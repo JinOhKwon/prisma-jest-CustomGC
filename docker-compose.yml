@@ -1,0 +1,24 @@
+version: "3.7"
+services:
+  db:
+    # 서비스 명
+    image: mysql:8.0.23
+    platform: linux/amd64
+    restart: always
+    container_name: nestjs
+    ports:
+      - 3306:3306
+    environment:
+      - TZ=Asia/Seoul
+      - MYSQL_DATABASE=nestjs
+      - MYSQL_ROOT_PASSWORD=0000
+      - MYSQL_USER=nestjs
+      - MYSQL_PASSWORD=0000
+    command:
+      - --log-bin=mysql-bin
+      - --server-id=1
+      - --lower_case_table_names=1
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./docker/db/mysql:/var/lib/mysql
