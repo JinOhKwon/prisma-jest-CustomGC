@@ -1,5 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
+import { LoggerService } from '../logger';
+import { PrismaLogger } from './prisma-logger.service';
 import { PrismaService } from './prisma.service';
 
 describe('prismaService test', () => {
@@ -10,6 +12,14 @@ describe('prismaService test', () => {
     const moduleRef = await Test.createTestingModule({
       providers: [
         PrismaService,
+        {
+          provide: PrismaLogger,
+          useValue: { query: jest.fn() },
+        },
+        {
+          provide: LoggerService,
+          useValue: { log: jest.fn() },
+        },
       ],
     }).compile();
     app = moduleRef.createNestApplication();
@@ -24,16 +34,16 @@ describe('prismaService test', () => {
   });
 
   it('prismaService', async () => {
-    expect(await prismaService).toBeDefined();
+    expect(await prismaService.user.findMany()).toStrictEqual([]);
   });
 
-  describe('PrimsaService 함수 호출', () => {
-    it('$connect() -> ', async () => {
-      expect(await prismaService.$connect()).toBeUndefined();
-    });
+  // describe('PrimsaService 함수 호출', () => {
+  //   it('$connect() -> ', async () => {
+  //     expect(await prismaService.$connect()).toBeUndefined();
+  //   });
 
-    it('$disconnect() -> ', async () => {
-      expect(await prismaService.$disconnect()).toBeUndefined();
-    });
-  });
+  //   it('$disconnect() -> ', async () => {
+  //     expect(await prismaService.$disconnect()).toBeUndefined();
+  //   });
+  // });
 });

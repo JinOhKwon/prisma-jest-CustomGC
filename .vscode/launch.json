@@ -13,10 +13,9 @@
         "--runTestsByPath",
         "${jest.testFile}"
       ],
-      "cwd": "${workspaceRoot}/nestjs-template",
+      "cwd": "${workspaceRoot}/prisma-jest-custom-gc",
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-      "runtimeExecutable": "yarn"
     },
     {
       "type": "node",
@@ -26,10 +25,9 @@
       "args": [
         "${fileBasenameNoExtension}",
         "--config",
-        "jest.config.js"
+        "jest.config.json"
       ],
       "console": "integratedTerminal",
-      "runtimeExecutable": "yarn"
     }
   ]
 }
