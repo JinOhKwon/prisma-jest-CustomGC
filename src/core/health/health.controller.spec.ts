@@ -30,9 +30,15 @@ describe('healthController 테스트', () => {
   describe('healthController 함수 호출', () => {
     it('check -> ', async () => {
       const result = {
-        details: { 'memory RSS': { status: 'up' }, 'memory heap': { status: 'up' } },
+        details: {
+          'memory RSS': { status: 'up' },
+          'memory heap': { status: 'up' },
+        },
         error: {},
-        info: { 'memory RSS': { status: 'up' }, 'memory heap': { status: 'up' } },
+        info: {
+          'memory RSS': { status: 'up' },
+          'memory heap': { status: 'up' },
+        },
         status: 'ok',
       };
       // object 비교는 toStrictEqual 사용
